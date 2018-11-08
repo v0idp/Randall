@@ -2,7 +2,7 @@
   "name": "the-messenger",
   "version": "1.0.0",
   "description": "auto posts bans from any server the bot is in on the log guild-channel",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
