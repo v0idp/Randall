@@ -6,7 +6,7 @@ const config = require("./config.json");
 // discord event handling
 handleEvent(client);
 async function handleEvent(client) {
-  fs.readdir("./events/", (err, files) => {
+  fs.readdir("./src/events/", (err, files) => {
     if (err) return console.error(err);
     files.forEach(file => {
       let eventFunction = require(`./events/${file}`);
