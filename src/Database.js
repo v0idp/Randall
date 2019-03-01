@@ -6,7 +6,7 @@ const fs = require('fs');
 class Database {
     constructor(name) {
         this.path = path.join(__dirname.slice(0, -3), 'data/' + name + '.sqlite3');
-        this.database;
+        this.db;
     }
 
     addBan(guild, user, reason) {
@@ -29,6 +29,26 @@ class Database {
         });
     }
 
+    addMods(role_id, guild_id) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                let result = await this.db.get('SELECT * FROM mods WHERE role_id=' + role_id);
+                console.log(result);
+                if (!result) {
+                    this.db.run('INSERT INTO mods (role_id, guild_id) VALUES(?, ?)',
+                    [role_id, guild_id]);
+                    resolve('role_id and guild_id added and linked.');
+                } else reject('role_id already exists.');
+            } catch (err) {
+                reject(err);
+            }
+        })
+    }
+
+    removeMods(role_id) {
+        this.db.run('DELETE FROM mods WHERE role_id=' + role_id);
+    }
+
     openDB(path) {
         return new Promise(async (resolve, reject) => {
             try {
@@ -38,8 +58,8 @@ class Database {
                 }
                 
                 const dbPromise = sqlite.open(path, { Promise });
-                let database = await dbPromise;
-                resolve(database);
+                let db = await dbPromise;
+                resolve(db);
             } catch(error) {
                 reject(error);
             }
@@ -48,10 +68,10 @@ class Database {
 
     init() {
         return new Promise(async (resolve, reject) => {
-            this.openDB(this.path).then(database => {
-                this.database = database;
-                this.database.run('CREATE TABLE IF NOT EXISTS bans (ban_id integer primary key asc, user_id integer, username text, guild_id integer, guildname text, reason text)');
-                this.database.run('CREATE TABLE IF NOT EXISTS mods (mods_id integer primary key asc, role_id integer, guild_id integer)');
+            this.openDB(this.path).then(db => {
+                this.db = db;
+                this.db.run('CREATE TABLE IF NOT EXISTS bans (ban_id integer primary key asc, user_id integer, username text, guild_id integer, guildname text, reason text)');
+                this.db.run('CREATE TABLE IF NOT EXISTS mods (mods_id integer primary key asc, role_id integer, guild_id integer)');
                 resolve(this);
             }).catch((err) => reject(err));
         });
