@@ -1,6 +1,6 @@
 FROM node:9.3
 
-MAINTAINER void* <voidp@protonmail.com>
+LABEL maintainer="void* <voidp@protonmail.com>"
 
 USER root
 
@@ -18,4 +18,4 @@ COPY src $APP/src
 
 WORKDIR $APP
 
-CMD [ "pm2-runtime", "src/app.js" ]
+CMD [ "pm2-runtime", "src/index.js" ]
