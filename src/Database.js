@@ -48,16 +48,13 @@ class Database {
     removeMods(role_id) {
         return new Promise(async (resolve, reject) => {
             try {
-                this.getMods(guild_id).then((result) => {
-                    if (result) {
-                        this.db.run('DELETE FROM mods WHERE role_id=' + role_id);
-                        resolve('mods removed and unlinked from guild.');
-                    } else reject('mods don\'t exist.');
-                }).catch((err) => reject(err));
+                this.db.run('DELETE FROM mods WHERE role_id=' + role_id).then(() => {
+                    resolve('mods removed and unlinked from guild.');
+                }).catch((err) => reject('mods couldn\'t be removed. Please check the ID you provided.'));
             } catch (err) {
                 reject(err);
             }
-        })
+        });
     }
 
     getMods(guild_id) {
