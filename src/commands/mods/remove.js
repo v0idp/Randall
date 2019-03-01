@@ -1,4 +1,5 @@
 const commando = require('discord.js-commando');
+const config = require('../../config.json');
 
 module.exports = class removeCommand extends commando.Command {
 	constructor (client) {
@@ -19,7 +20,11 @@ module.exports = class removeCommand extends commando.Command {
                 }
 			]
 		});
-	}
+    }
+    
+    hasPermission(msg) {
+        return msg.member.roles.has(config.mods);
+    }
 
 	run (msg, args) {
         // remove/unlink mod role id from notifications

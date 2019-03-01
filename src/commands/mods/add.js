@@ -1,4 +1,5 @@
 const commando = require('discord.js-commando');
+const config = require('../../config.json');
 
 module.exports = class addCommand extends commando.Command {
 	constructor (client) {
@@ -24,7 +25,11 @@ module.exports = class addCommand extends commando.Command {
 				}
 			]
 		});
-	}
+    }
+    
+    hasPermission(msg) {
+        return msg.member.roles.has(config.mods);
+    }
 
 	run (msg, args) {
         // add/link mod role id and group id to database for future notifications
