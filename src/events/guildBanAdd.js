@@ -4,7 +4,7 @@ exports.run = (client, guild, user) => {
   // add user ban to database here
   setTimeout(function() {
     guild.fetchAuditLogs({type: 'MEMBER_BAN_ADD'}).then((audit) => {
-      client.guilds.get(config.settings.log_guild).channels.get(config.settings.log_channel).send({
+      client.guilds.get(config.logs.guild_id).channels.get(config.logs.channel_id).send({
         embed:{
           color: 16711680,
           author: {
