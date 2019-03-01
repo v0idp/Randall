@@ -21,7 +21,6 @@ exports.run = (client, member) => {
                     embed.addField(`**${ban.guildname}**`, `${(ban.reason) ? `*${ban.reason}*` : '*no reason provided*'}`);
                 });
                 if (mods) {
-                    console.log(mods);
                     client.guilds.get(config.logs.guild_id).channels.get(config.logs.channel_id).send(`<@&${mods.role_id}>`);
                 }
                 client.guilds.get(config.logs.guild_id).channels.get(config.logs.channel_id).send(embed);
