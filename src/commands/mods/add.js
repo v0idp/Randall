@@ -32,6 +32,12 @@ module.exports = class addCommand extends commando.Command {
     }
 
 	run (msg, args) {
-        // add/link mod role id and group id to database for future notifications
+        this.client.db.addMods(args.role, args.guild).then((res) => {
+			console.log(res);
+			msg.reply(res);
+		}).catch((err) => {
+			console.log(err);
+			msg.reply(err);
+		})
     }
 };
