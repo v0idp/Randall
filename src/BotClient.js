@@ -22,7 +22,6 @@ class BotClient extends Commando.Client {
 				let eventFunction = require(`./events/${file}`);
 				let eventName = file.split(".")[0];
 				this.on(eventName, (...args) => eventFunction.run(this, ...args));
-				console.log(`Registered event: '${eventName}'`);
 			});
 		});
 
