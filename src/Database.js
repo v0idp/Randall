@@ -18,10 +18,10 @@ class Database {
         this.db.run('DELETE FROM bans WHERE user_id=' + user.id + ' AND guild_id=' + guild.id);
     }
 
-    getBans(user) {
+    getBans(member) {
         return new Promise(async (resolve, reject) => {
             try {
-                let result =  await this.db.get('SELECT * FROM bans WHERE user_id=' + user.id);
+                let result =  await this.db.get('SELECT * FROM bans WHERE user_id=' + member.id);
                 resolve(result);
             } catch (err) {
                 reject(err);
