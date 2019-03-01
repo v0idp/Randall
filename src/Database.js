@@ -37,8 +37,8 @@ class Database {
                 if (!result) {
                     this.db.run('INSERT INTO mods (role_id, guild_id) VALUES(?, ?)',
                     [role_id, guild_id]);
-                    resolve('role_id and guild_id added and linked.');
-                } else reject('role_id already exists.');
+                    resolve('mods added and linked to guild.');
+                } else reject('mods already exist.');
             } catch (err) {
                 reject(err);
             }

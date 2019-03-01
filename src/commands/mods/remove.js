@@ -27,6 +27,8 @@ module.exports = class removeCommand extends commando.Command {
     }
 
 	run (msg, args) {
-        // remove/unlink mod role id from notifications
+		this.client.db.removeMods(args.role);
+		console.log('mods removed and unlinked from guild.');
+		msg.reply('mods removed and unlinked from guild.');
     }
 };
