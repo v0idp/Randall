@@ -31,6 +31,6 @@ module.exports = class removeCommand extends commando.Command {
 			return msg.reply(res);
 		}).catch((err) => {
 			return msg.reply(err);
-		})
+		});
     }
 };

@@ -36,6 +36,6 @@ module.exports = class addCommand extends commando.Command {
 			return msg.reply(res);
 		}).catch((err) => {
 			return msg.reply(err);
-		})
+		});
     }
 };
