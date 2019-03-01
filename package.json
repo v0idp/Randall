@@ -11,7 +11,7 @@
     "url": "git+https://github.com/v0idp/Randall.git"
   },
   "keywords": [
-    "discord.js",
+    "discord",
     "bot",
     "commands"
   ],
@@ -20,5 +20,11 @@
   "bugs": {
     "url": "https://github.com/v0idp/Randall/issues"
   },
-  "homepage": "https://github.com/v0idp/Randall#readme"
+  "homepage": "https://github.com/v0idp/Randall#readme",
+  "dependencies": {
+    "bluebird": "^3.5.3",
+    "discord.js": "github:discordjs/discord.js",
+    "discord.js-commando": "github:discordjs/Commando",
+    "sqlite": "^3.0.2"
+  }
 }
