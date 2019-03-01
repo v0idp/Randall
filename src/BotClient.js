@@ -16,7 +16,7 @@ class BotClient extends Commando.Client {
 
 	init () {
 		// dynamically register our events based on the content of the events folder
-		fs.readdir("./events/", (err, files) => {
+		fs.readdir("./src/events/", (err, files) => {
 			if (err) return console.error(err);
 			files.forEach(file => {
 				let eventFunction = require(`./events/${file}`);
