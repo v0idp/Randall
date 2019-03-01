@@ -1,7 +1,12 @@
 {
-    "settings" : {
+    "general" : {
         "token" : "",
-        "log_guild" : "",
-        "log_channel" : ""
+        "ownerID" : "",
+        "globalCommandPrefix" : ">"
+    },
+
+    "logs" : {
+        "guild_id" : "",
+        "channel_id" : ""
     }
 }

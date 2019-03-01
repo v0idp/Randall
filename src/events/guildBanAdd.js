@@ -1,6 +1,7 @@
 const config = require("./../config.json");
 
 exports.run = (client, guild, user) => {
+  // add user ban to database here
   setTimeout(function() {
     guild.fetchAuditLogs({type: 'MEMBER_BAN_ADD'}).then((audit) => {
       client.guilds.get(config.settings.log_guild).channels.get(config.settings.log_channel).send({

@@ -1,14 +1,24 @@
 {
   "name": "randall",
-  "version": "1.0.0",
-  "description": "auto posts bans from any server the bot is in on the log guild-channel",
-  "main": "src/app.js",
+  "version": "2.0.0",
+  "description": "snitchin on the bad bois",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/v0idp/Randall.git"
+  },
+  "keywords": [
+    "discord.js",
+    "bot",
+    "commands"
+  ],
   "author": "void*",
-  "license": "ISC",
-  "dependencies": {
-    "discord.js": "github:discordjs/discord.js"
-  }
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/v0idp/Randall/issues"
+  },
+  "homepage": "https://github.com/v0idp/Randall#readme"
 }
