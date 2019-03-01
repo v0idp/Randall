@@ -38,7 +38,7 @@ class Database {
                     this.db.run('INSERT INTO mods (role_id, guild_id) VALUES(?, ?)',
                     [role_id, guild_id]);
                     resolve('mods added and linked to guild.');
-                } else reject('mods already added and linked.');
+                } else reject('mods already added and linked to guild.');
             } catch (err) {
                 reject(err);
             }
