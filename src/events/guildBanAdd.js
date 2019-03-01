@@ -6,7 +6,7 @@ exports.run = (client, guild, user) => {
     guild.fetchAuditLogs({type: 'MEMBER_BAN_ADD'}).then((audit) => {
       // post ban notification to mod server
       client.guilds.get(config.logs.guild_id).channels.get(config.logs.channel_id).send({
-        embed:{
+        embed: {
           color: 16711680,
           author: {
             name: guild.name,
