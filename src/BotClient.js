@@ -4,12 +4,12 @@ const sqlite = require('sqlite');
 const fs = require('fs');
 
 class BotClient extends Commando.Client {
-	constructor (database, token, ownerid, commandprefix) {
+	constructor (db, token, ownerid, commandprefix) {
 		super({
 			"owner": (ownerid) ? ownerid : null,
 			"commandPrefix": (commandprefix) ? commandprefix : '$'
 		});
-		this.database = database;
+		this.db = db;
 		this.token = token;
 		this.isReady = false;
 	}

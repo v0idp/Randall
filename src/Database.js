@@ -9,6 +9,26 @@ class Database {
         this.database;
     }
 
+    addBan(guild, user, reason) {
+        this.db.run('INSERT INTO bans (user_id, username, guild_id, guildname, reason) VALUES(?, ?, ?, ?, ?)',
+            [user.id, user.username, guild.id, guild.name, reason]);
+    }
+
+    removeBan(guild, user) {
+        this.db.run('DELETE FROM bans WHERE user_id=' + user.id + ' AND guild_id=' + guild.id);
+    }
+
+    getBans(user) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                let result =  await this.db.get('SELECT * FROM bans WHERE user_id=' + user.id);
+                resolve(result);
+            } catch (err) {
+                reject(err);
+            }
+        });
+    }
+
     openDB(path) {
         return new Promise(async (resolve, reject) => {
             try {
