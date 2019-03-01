@@ -27,8 +27,10 @@ module.exports = class removeCommand extends commando.Command {
     }
 
 	run (msg, args) {
-		this.client.db.removeMods(args.role);
-		console.log('mods removed and unlinked from guild.');
-		msg.reply('mods removed and unlinked from guild.');
+		this.client.db.removeMods(args.role).then((res) => {
+			return msg.reply(res);
+		}).catch((err) => {
+			return msg.reply(err);
+		})
     }
 };

@@ -33,9 +33,9 @@ module.exports = class addCommand extends commando.Command {
 
 	run (msg, args) {
         this.client.db.addMods(args.role, args.guild).then((res) => {
-			msg.reply(res);
+			return msg.reply(res);
 		}).catch((err) => {
-			msg.reply(err);
+			return msg.reply(err);
 		})
     }
 };

@@ -32,13 +32,13 @@ class Database {
     addMods(role_id, guild_id) {
         return new Promise(async (resolve, reject) => {
             try {
-                let result = await this.db.get('SELECT * FROM mods WHERE role_id=' + role_id);
-                if (!result) {
-                    this.db.run('INSERT INTO mods (role_id, guild_id) VALUES(?, ?)',
-                    [role_id, guild_id]);
-                    resolve('mods added and linked to guild.');
-                } else reject('mods already added and linked to guild.');
-                
+                this.getMods(guild_id).then((result) => {
+                    if (!result) {
+                        this.db.run('INSERT INTO mods (role_id, guild_id) VALUES(?, ?)',
+                        [role_id, guild_id]);
+                        resolve('mods added and linked to guild.');
+                    } else reject('mods already added and linked to guild.');
+                }).catch((err) => reject(err));
             } catch (err) {
                 reject(err);
             }
@@ -46,7 +46,29 @@ class Database {
     }
 
     removeMods(role_id) {
-        this.db.run('DELETE FROM mods WHERE role_id=' + role_id);
+        return new Promise(async (resolve, reject) => {
+            try {
+                this.getMods(guild_id).then((result) => {
+                    if (result) {
+                        this.db.run('DELETE FROM mods WHERE role_id=' + role_id);
+                        resolve('mods removed and unlinked from guild.');
+                    } else reject('mods don\'t exist.');
+                }).catch((err) => reject(err));
+            } catch (err) {
+                reject(err);
+            }
+        })
+    }
+
+    getMods(guild_id) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                let result =  await this.db.get('SELECT * FROM mods WHERE guild_id=' + guild_id);
+                resolve(result);
+            } catch (err) {
+                reject(err);
+            }
+        });
     }
 
     openDB(path) {

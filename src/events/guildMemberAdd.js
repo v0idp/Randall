@@ -1,4 +1,13 @@
 exports.run = (client, member) => {
-    // to access the guild id use: member.guild
-    // check if member has any bans and notify mods with information
+    // check if member has any bans
+    client.db.getBans(member).then((result) => {
+        console.log(result);
+        client.db.getMods(member.guild.id).then((res) =>{
+            if (res) {
+                // notify mods on log guild/channel
+            } else {
+                // notify anyways without tagging mods
+            }
+        });
+    }).catch(console.error);
 }
