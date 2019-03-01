@@ -16,7 +16,7 @@ module.exports = class removeCommand extends commando.Command {
 				{
 					'key': 'role',
 					'prompt': 'what is the ID of the role you want to remove ?',
-					'type': 'integer'
+					'type': 'string'
                 }
 			]
 		});

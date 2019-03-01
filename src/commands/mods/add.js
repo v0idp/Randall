@@ -16,12 +16,12 @@ module.exports = class addCommand extends commando.Command {
 				{
 					'key': 'role',
 					'prompt': 'what is the ID of the role you want to add ?',
-					'type': 'integer'
+					'type': 'string'
                 },
                 {
 					'key': 'guild',
 					'prompt': 'what is the ID of the guild you want to add ?',
-					'type': 'integer'
+					'type': 'string'
 				}
 			]
 		});
@@ -33,10 +33,8 @@ module.exports = class addCommand extends commando.Command {
 
 	run (msg, args) {
         this.client.db.addMods(args.role, args.guild).then((res) => {
-			console.log(res);
 			msg.reply(res);
 		}).catch((err) => {
-			console.log(err);
 			msg.reply(err);
 		})
     }

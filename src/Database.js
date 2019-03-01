@@ -33,12 +33,12 @@ class Database {
         return new Promise(async (resolve, reject) => {
             try {
                 let result = await this.db.get('SELECT * FROM mods WHERE role_id=' + role_id);
-                console.log(result);
                 if (!result) {
                     this.db.run('INSERT INTO mods (role_id, guild_id) VALUES(?, ?)',
                     [role_id, guild_id]);
                     resolve('mods added and linked to guild.');
                 } else reject('mods already added and linked to guild.');
+                
             } catch (err) {
                 reject(err);
             }
@@ -70,8 +70,8 @@ class Database {
         return new Promise(async (resolve, reject) => {
             this.openDB(this.path).then(db => {
                 this.db = db;
-                this.db.run('CREATE TABLE IF NOT EXISTS bans (ban_id integer primary key asc, user_id integer, username text, guild_id integer, guildname text, reason text)');
-                this.db.run('CREATE TABLE IF NOT EXISTS mods (mods_id integer primary key asc, role_id integer, guild_id integer)');
+                this.db.run('CREATE TABLE IF NOT EXISTS bans (ban_id integer primary key asc, user_id text, username text, guild_id text, guildname text, reason text)');
+                this.db.run('CREATE TABLE IF NOT EXISTS mods (mods_id integer primary key asc, role_id text, guild_id text)');
                 resolve(this);
             }).catch((err) => reject(err));
         });
