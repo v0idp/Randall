@@ -1,6 +1,6 @@
 const BotClient = require('./BotClient.js');
 const Database = require('./Database.js');
-const config = require("./../config.json");
+const config = require("./config.json");
 
 let bot = null;
 let start = function () {
