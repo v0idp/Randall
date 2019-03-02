@@ -5,7 +5,7 @@ exports.run = (client, member) => {
     // retreive any bans from database
     client.db.getBans(member).then((bans) => {
         // make sure member has any bans
-        if (bans) {
+        if (bans.size > 0) {
             // retreive role_id if it's linked to that guild_id
             client.db.getMods(member.guild.id).then((mods) =>{
                 let embed = new Discord.MessageEmbed()
