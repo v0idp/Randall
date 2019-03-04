@@ -28,7 +28,8 @@ module.exports = class addCommand extends commando.Command {
     }
     
     hasPermission(msg) {
-        return msg.member.roles.has(config.mods);
+		return (msg.member.roles.has(config.mods)
+			&& msg.guild.id === config.logs.guild_id);
     }
 
 	run (msg, args) {

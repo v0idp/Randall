@@ -21,7 +21,18 @@ class Database {
     getBans(member) {
         return new Promise(async (resolve, reject) => {
             try {
-                let result =  await this.db.all('SELECT * FROM bans WHERE user_id=' + member.id);
+                let result = await this.db.all('SELECT * FROM bans WHERE user_id=' + member.id);
+                resolve(result);
+            } catch (err) {
+                reject(err);
+            }
+        });
+    }
+
+    getBansByGuild(guild) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                let result = await this.db.all('SELECT * FROM bans WHERE guild_id=' + guild.id);
                 resolve(result);
             } catch (err) {
                 reject(err);

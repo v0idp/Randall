@@ -34,6 +34,7 @@ class BotClient extends Commando.Client {
 		this.registry
 			.registerDefaultGroups()
 			.registerGroups([
+				['everyone', 'Everyone'],
 				['mods', 'Mods']
 			])
 			.registerDefaultTypes()

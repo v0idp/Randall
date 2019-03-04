@@ -9,16 +9,17 @@ exports.run = (client, member) => {
             // retreive role_id if it's linked to that guild_id
             client.db.getMods(member.guild.id).then((mods) =>{
                 let embed = new Discord.MessageEmbed()
-                .setAuthor(member.guild, member.guild.iconURL())
-                .setColor(3447003)
-                .setTimestamp()
-                .setDescription(`**Attention!** ${member.user.username} was previously banned` +
-                    ` on other servers and joined **${member.guild.name}**. Please keep an eye on him.`)
-                .setThumbnail(member.user.avatarURL());
+                    .setAuthor(member.guild, member.guild.iconURL())
+                    .setColor(3447003)
+                    .setTimestamp()
+                    .setDescription(`**Attention!** ${member.user.username} was previously banned` +
+                        ` on other servers and joined **${member.guild.name}**. Please keep an eye on him.`)
+                    .setThumbnail(member.user.avatarURL());
 
                 // populate all bans into fields and add them to the embed
+                // TODO: implement promise based forEach so it actually waits until .forEach is finished before continuing
                 bans.forEach((ban) => {
-                    embed.addField(`**${ban.guildname}**`, `${(ban.reason) ? `*${ban.reason}*` : '*no reason provided*'}`);
+                    embed.addField(`**${ban.guildname}**`, `${(ban.reason) ? `*${ban.reason}*` : '*no reason provided*'}`, true);
                 });
                 if (mods) {
                     client.guilds.get(config.logs.guild_id).channels.get(config.logs.channel_id).send(`<@&${mods.role_id}>`);
