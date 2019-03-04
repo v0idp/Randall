@@ -42,7 +42,8 @@ class BotClient extends Commando.Client {
 				'prefix': false,
 				'ping': false,
 				'eval_': false,
-				'commandState': false
+				'commandState': false,
+				'unknownCommand': false
 			}).registerCommandsIn(path.join(__dirname, 'commands'));
 
 		// login client with bot token
