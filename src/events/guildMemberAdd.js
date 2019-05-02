@@ -7,7 +7,7 @@ exports.run = (client, member) => {
         // make sure member has any bans
         if (bans.length > 0) {
             // retreive role_id if it's linked to that guild_id
-            client.db.getMods(member.guild.id).then((mods) =>{
+            client.db.getMods(member.guild.id).then((mods) => {
                 let embed = new Discord.MessageEmbed()
                     .setAuthor(member.guild, member.guild.iconURL())
                     .setColor(3447003)
@@ -17,7 +17,6 @@ exports.run = (client, member) => {
                     .setThumbnail(member.user.avatarURL());
 
                 // populate all bans into fields and add them to the embed
-                // TODO: implement promise based forEach so it actually waits until .forEach is finished before continuing
                 bans.forEach((ban) => {
                     embed.addField(`**${ban.guildname}**`, `${(ban.reason) ? `*${ban.reason}*` : '*no reason provided*'}`, true);
                 });

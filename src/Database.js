@@ -17,6 +17,10 @@ class Database {
     removeBan(guild, user) {
         this.db.run('DELETE FROM bans WHERE user_id=' + user.id + ' AND guild_id=' + guild.id);
     }
+    
+    removeBansByGuild(guild) {
+        this.db.run('DELETE FROM bans WHERE guild_id=' + guild.id);
+    }
 
     getBans(member) {
         return new Promise(async (resolve, reject) => {
@@ -73,6 +77,20 @@ class Database {
             try {
                 let result =  await this.db.get('SELECT * FROM mods WHERE guild_id=' + guild_id);
                 resolve(result);
+            } catch (err) {
+                reject(err);
+            }
+        });
+    }
+
+    syncBans(guild, bans) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                this.removeBansByGuild(guild);
+                bans.forEach((ban) => {
+                    this.addBan(guild, ban.user, ban.reason);
+                });
+                resolve('All bans were synced.');
             } catch (err) {
                 reject(err);
             }
