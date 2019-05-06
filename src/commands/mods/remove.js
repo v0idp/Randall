@@ -5,8 +5,8 @@ module.exports = class removeCommand extends commando.Command {
 	constructor (client) {
 		super(client, {
 			'name': 'remove',
-            'memberName': 'remove',
-            'aliases': ['unlink'],
+			'memberName': 'remove',
+			'aliases': ['unlink'],
 			'group': 'mods',
 			'description': 'remove/unlink mods from notifications',
 			'examples': ['remove 123456789'],
@@ -17,15 +17,15 @@ module.exports = class removeCommand extends commando.Command {
 					'key': 'role',
 					'prompt': 'what is the ID of the role you want to remove ?',
 					'type': 'string'
-                }
+				}
 			]
 		});
-    }
-    
-    hasPermission(msg) {
+	}
+
+	hasPermission(msg) {
 		return (msg.member.roles.has(config.mods)
 			&& msg.guild.id === config.logs.guild_id);
-    }
+	}
 
 	run (msg, args) {
 		this.client.db.removeMods(args.role).then((res) => {
@@ -33,5 +33,5 @@ module.exports = class removeCommand extends commando.Command {
 		}).catch((err) => {
 			return msg.reply(err);
 		});
-    }
+	}
 };
