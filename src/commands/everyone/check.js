@@ -73,8 +73,8 @@ module.exports = class checkCommand extends commando.Command {
 
 				this.client.guilds.get(res.guild_id).members.fetch().then((members) => {
 					let member = members.find((member) => member.id === args.member);
-					if (!member) return msg.reply('This member is not on your guild.');
-					
+					if (!member) return msg.reply('This member is not in your guild.');
+
 					this.client.db.getBans(member).then((bans) => {
 						if(bans.length > 0) {
 							let embed = new Discord.MessageEmbed()
