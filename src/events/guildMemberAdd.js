@@ -12,7 +12,7 @@ exports.run = (client, member) => {
 					.setAuthor(member.guild, member.guild.iconURL())
 					.setColor(3447003)
 					.setTimestamp()
-					.setDescription(`**Attention!** ${member.user.username} [*${member.user.id}*] was previously banned` +
+					.setDescription(`**${member.user.username}** [*${member.user.id}*] was previously banned` +
 						` on other guilds and joined **${member.guild.name}**. Please keep an eye on him.`)
 					.setThumbnail(member.user.avatarURL());
 

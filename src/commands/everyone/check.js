@@ -81,7 +81,7 @@ module.exports = class checkCommand extends commando.Command {
 							.setAuthor(member.guild, member.guild.iconURL())
 							.setColor(3447003)
 							.setTimestamp()
-							.setDescription(`${member.user.username} [*${member.user.id}*] was previously banned on other guilds.`)
+							.setDescription(`**${member.user.username}** [*${member.user.id}*] was previously banned on other guilds.`)
 							.setThumbnail(member.user.avatarURL());
 							
 							bans.forEach((ban) => {
