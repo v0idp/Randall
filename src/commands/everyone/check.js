@@ -49,19 +49,19 @@ module.exports = class checkCommand extends commando.Command {
 						.setColor(3447003)
 						.setTimestamp();
 
-					let fieldString = `**${this.client.guilds.get(res.guild_id).name}** has __**${banList.length}**__ banned member${(banList.length === 1) ? '' : 's'} from other guilds.\n\n`;
-					if (banList.length > 0) {
-						banList.forEach((bans) => {
-							fieldString += `**${bans[0].username}** [*${bans[0].user_id}*]\n`
-							bans.forEach(ban => {
-								fieldString += `*${ban.guildname}*\n`;
+						let fieldString = `**${this.client.guilds.get(res.guild_id).name}** has __**${banList.length}**__ banned member${(banList.length === 1) ? '' : 's'} from other guilds.\n\n`;
+						if (banList.length > 0) {
+							banList.forEach((bans) => {
+								fieldString += `**${bans[0].username}** [*${bans[0].user_id}*]\n`
+								bans.forEach(ban => {
+									fieldString += `*${ban.guildname}*\n`;
+								});
 							});
-						});
-						embed.setDescription(fieldString);
-					}
+							embed.setDescription(fieldString);
+						}
 
-					return msg.embed(embed);
-					});
+						return msg.embed(embed);
+					}).catch(console.error);
 				}).catch(console.error);
 			}).catch((err) => {
 				return console.log(err);
