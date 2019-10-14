@@ -4,6 +4,8 @@ exports.run = (client, guild, user) => {
   setTimeout(function() {
     // fetch audit logs
     guild.fetchAuditLogs({type: 'MEMBER_BAN_ADD'}).then((audit) => {
+      // decode any possible encodings in reason (possibly done by DynoBot)
+      let decodedReason = decodeURIComponent(audit.entries.first().reason);
       // post ban notification to mod server
       client.guilds.get(config.logs.guild_id).channels.get(config.logs.channel_id).send({
         embed: {
@@ -13,8 +15,8 @@ exports.run = (client, guild, user) => {
             icon_url: guild.iconURL()
           },
           description: `**${user.username} [${user.id}]** was banned from **${guild.name}**` +
-            `\n\n__**Reason**__\n${(audit.entries.first().reason) ?
-              audit.entries.first().reason :
+            `\n\n__**Reason**__\n${(decodedReason) ?
+              decodedReason :
               'no reason provided'}`,
           thumbnail: {
             url: user.avatarURL()
@@ -23,7 +25,7 @@ exports.run = (client, guild, user) => {
         }
       });
       // add user ban to database
-      client.db.addBan(guild, user, audit.entries.first().reason);
+      client.db.addBan(guild, user, decodedReason);
     }).catch(console.error);
   }, 10000);
 }
