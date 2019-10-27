@@ -5,7 +5,7 @@ exports.run = (client, guild, user) => {
     // fetch audit logs
     guild.fetchAuditLogs({type: 'MEMBER_BAN_ADD'}).then((audit) => {
       // decode any possible encodings in reason (possibly done by DynoBot)
-      let decodedReason = decodeURIComponent(audit.entries.first().reason);
+      const decodedReason = decodeURIComponent(audit.entries.first().reason);
       // post ban notification to mod server
       client.guilds.get(config.logs.guild_id).channels.get(config.logs.channel_id).send({
         embed: {
