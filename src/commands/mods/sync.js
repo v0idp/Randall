@@ -28,8 +28,8 @@ module.exports = class syncCommand extends commando.Command {
 
 	run (msg, args) {
         try {
-            this.client.guilds.get(args.guild).fetchBans().then((bans) => {
-                this.client.db.syncBans(this.client.guilds.get(args.guild), bans).then((res) => {
+            this.client.guilds.cache.get(args.guild).fetchBans().then((bans) => {
+                this.client.db.syncBans(this.client.guilds.cache.get(args.guild), bans).then((res) => {
                     return msg.reply(res);
                 }).catch((err) => {
                     return msg.reply(err);

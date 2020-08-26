@@ -7,7 +7,7 @@ exports.run = (client, guild, user) => {
       // decode any possible encodings in reason (possibly done by DynoBot)
       const decodedReason = decodeURIComponent(audit.entries.first().reason);
       // post ban notification to mod server
-      client.guilds.get(config.logs.guild_id).channels.get(config.logs.channel_id).send({
+      client.guilds.cache.get(config.logs.guild_id).channels.get(config.logs.channel_id).send({
         embed: {
           color: 16711680,
           author: {

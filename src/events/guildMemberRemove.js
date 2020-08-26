@@ -5,7 +5,7 @@ exports.run = (client, member) => {
     member.guild.fetchAuditLogs({user: member, limit: 1}).then((audit) => {
       if (audit.entries.first().action === 'MEMBER_KICK') {
         const decodedReason = decodeURIComponent(audit.entries.first().reason);
-        client.guilds.get(config.logs.guild_id).channels.get(config.logs.channel_id).send({
+        client.guilds.cache.get(config.logs.guild_id).channels.get(config.logs.channel_id).send({
           embed: {
             color: 16469017,
             author: {

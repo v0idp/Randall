@@ -21,9 +21,9 @@ exports.run = (client, member) => {
 					embed.addField(`**${ban.guildname}**`, `${(ban.reason) ? `*${ban.reason}*` : '*no reason provided*'}`, true);
 				});
 				if (mods) {
-					client.guilds.get(config.logs.guild_id).channels.get(config.logs.channel_id).send(`<@&${mods.role_id}>`);
+					client.guilds.cache.get(config.logs.guild_id).channels.get(config.logs.channel_id).send(`<@&${mods.role_id}>`);
 				}
-				client.guilds.get(config.logs.guild_id).channels.get(config.logs.channel_id).send(embed);
+				client.guilds.cache.get(config.logs.guild_id).channels.get(config.logs.channel_id).send(embed);
 			});
 		} // ignore this member if there are no bans
 	}).catch(console.error);

@@ -35,7 +35,7 @@ module.exports = class checkCommand extends commando.Command {
 
 				let banList = [];
 				let promises = [];
-				this.client.guilds.get(res.guild_id).members.fetch().then((members) => {
+				this.client.guilds.cache.get(res.guild_id).members.fetch().then((members) => {
 					members.forEach((member) => {
 						promises.push(this.client.db.getBans(member).then((bans) => {
 							if(bans.length > 0) banList.push(bans);
@@ -49,7 +49,7 @@ module.exports = class checkCommand extends commando.Command {
 						.setColor(3447003)
 						.setTimestamp();
 
-						let fieldString = `**${this.client.guilds.get(res.guild_id).name}** has __**${banList.length}**__ banned member${(banList.length === 1) ? '' : 's'} from other guilds.\n\n`;
+						let fieldString = `**${this.client.guilds.cache.get(res.guild_id).name}** has __**${banList.length}**__ banned member${(banList.length === 1) ? '' : 's'} from other guilds.\n\n`;
 						if (banList.length > 0) {
 							banList.forEach((bans) => {
 								fieldString += `**${bans[0].username}** [*${bans[0].user_id}*]\n`
@@ -71,7 +71,7 @@ module.exports = class checkCommand extends commando.Command {
 				let res = allMods.find((obj) => msg.member.roles.cache.has(obj.role_id));
 				if (!res) return msg.reply('You need a guild role to use this command.');
 
-				this.client.guilds.get(res.guild_id).members.fetch().then((members) => {
+				this.client.guilds.cache.get(res.guild_id).members.fetch().then((members) => {
 					let member = members.find((member) => member.id === args.member);
 					if (!member) return msg.reply('This member is not in your guild.');
 

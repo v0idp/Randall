@@ -23,7 +23,7 @@ module.exports = class infoCommand extends commando.Command {
 			.setAuthor(this.client.user.username)
 			.setColor(3447003)
 			.setTimestamp()
-			.setDescription(`Randall is snitching on ${this.client.guilds.size-1} guild${(this.client.guilds.size === 1) ? '' : 's'}.`);
+			.setDescription(`Randall is snitching on ${this.client.guilds.cache.size-1} guild${(this.client.guilds.cache.size === 1) ? '' : 's'}.`);
 		let promises = [];
 		this.client.guilds.cache.forEach((guild) => {
 			if (guild.id !== config.logs.guild_id) {
