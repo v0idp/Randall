@@ -30,7 +30,7 @@ module.exports = class checkCommand extends commando.Command {
 	run (msg, args) {
 		if (args.member === 'all') {
 			this.client.db.getAllMods().then((allMods) => {
-				let res = allMods.find((obj) => msg.member.roles.has(obj.role_id));
+				let res = allMods.find((obj) => msg.member.roles.cache.has(obj.role_id));
 				if (!res) return msg.reply('You need a guild role to use this command.');
 
 				let banList = [];
@@ -68,7 +68,7 @@ module.exports = class checkCommand extends commando.Command {
 			});
 		} else {
 			this.client.db.getAllMods().then((allMods) => {
-				let res = allMods.find((obj) => msg.member.roles.has(obj.role_id));
+				let res = allMods.find((obj) => msg.member.roles.cache.has(obj.role_id));
 				if (!res) return msg.reply('You need a guild role to use this command.');
 
 				this.client.guilds.get(res.guild_id).members.fetch().then((members) => {

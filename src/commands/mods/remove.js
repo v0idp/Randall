@@ -23,7 +23,7 @@ module.exports = class removeCommand extends commando.Command {
 	}
 
 	hasPermission(msg) {
-		return (msg.member.roles.has(config.mods)
+		return (msg.member.roles.cache.has(config.mods)
 			&& msg.guild.id === config.logs.guild_id);
 	}
 
