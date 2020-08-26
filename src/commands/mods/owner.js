@@ -26,7 +26,7 @@ module.exports = class ownerCommand extends commando.Command {
 			.setTimestamp()
 			.setDescription(`Randall found ${this.client.guilds.cache.size-1} owner${(this.client.guilds.cache.size === 1) ? '' : 's'}.`);
 		this.client.guilds.cache.forEach((guild) => {
-			embed.addField(guild.name, `${guild.owner.user.username}#${guild.owner.user.tag}`, true);
+			embed.addField(guild.name, `${guild.owner.user.tag}`, true);
 		});
 		msg.embed(embed);
 	}
