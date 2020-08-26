@@ -25,7 +25,7 @@ module.exports = class infoCommand extends commando.Command {
 			.setTimestamp()
 			.setDescription(`Randall is snitching on ${this.client.guilds.size-1} guild${(this.client.guilds.size === 1) ? '' : 's'}.`);
 		let promises = [];
-		this.client.guilds.forEach((guild) => {
+		this.client.guilds.cache.forEach((guild) => {
 			if (guild.id !== config.logs.guild_id) {
 				promises.push(this.client.db.getBansByGuild(guild).then((result) => {
 					embed.addField(guild.name,`${result.length} banned user${(result.length === 1) ? '' : 's'}`, true);
