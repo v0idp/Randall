@@ -5,7 +5,7 @@ exports.run = (client, guild, user) => {
         // fetch audit logs
         guild.fetchAuditLogs({type: 'MEMBER_BAN_REMOVE'}).then((audit) => {
             // post unban notification to mod server
-            client.guilds.cache.get(config.logs.guild_id).channels.get(config.logs.channel_id).send({
+            client.guilds.cache.get(config.logs.guild_id).channels.cache.get(config.logs.channel_id).send({
                 embed: {
                     color: 65280,
                     author: {
