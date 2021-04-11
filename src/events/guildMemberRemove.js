@@ -1,7 +1,7 @@
 const config = require("./../config.json");
 
 exports.run = (client, member) => {
-  setTimeout(function() {
+/*   setTimeout(function() {
     member.guild.fetchAuditLogs({user: member, limit: 1}).then((audit) => {
       if (audit.entries.first().action === 'MEMBER_KICK') {
         const decodedReason = decodeURIComponent(audit.entries.first().reason);
@@ -24,5 +24,5 @@ exports.run = (client, member) => {
         });
       }
     });
-  }, 10000);
+  }, 10000); */
 }
