@@ -1,13 +1,17 @@
 const Commando = require('discord.js-commando');
+const {Discord, Intents} = require('discord.js');
 const path = require('path');
 const sqlite = require('sqlite');
 const fs = require('fs');
+
+const myIntents = new Intents(Intents.ALL);
 
 class BotClient extends Commando.Client {
 	constructor (db, token, ownerid, commandprefix) {
 		super({
 			"owner": (ownerid) ? ownerid : null,
-			"commandPrefix": (commandprefix) ? commandprefix : '$'
+			"commandPrefix": (commandprefix) ? commandprefix : '$',
+			'intents': myIntents
 		});
 		this.db = db;
 		this.token = token;

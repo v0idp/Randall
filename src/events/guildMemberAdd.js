@@ -23,7 +23,11 @@ exports.run = (client, member) => {
 				if (mods) {
 					client.guilds.cache.get(config.logs.guild_id).channels.cache.get(config.logs.channel_id).send(`<@&${mods.role_id}>`);
 				}
-				client.guilds.cache.get(config.logs.guild_id).channels.cache.get(config.logs.channel_id).send(embed);
+				if (guild.id === '741151746403074070' || guild.id === '413906148153098244'|| guild.id === '247109092567547905') { //if it is a trees server post in their channel otherwise post normally
+					client.guilds.cache.get(config.logs.guild_id).channels.cache.get('837717567359156324').send(embed);
+				} else {
+					client.guilds.cache.get(config.logs.guild_id).channels.cache.get(config.logs.channel_id).send(embed);
+				}
 			});
 		} // ignore this member if there are no bans
 	}).catch(console.error);
