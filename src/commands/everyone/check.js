@@ -57,10 +57,16 @@ module.exports = class checkCommand extends commando.Command {
 									fieldString += `*${ban.guildname}*\n`;
 								});
 							});
-							embed.setDescription(fieldString);
+							if (fieldString.length >= 2048) {
+								let embed1Description = fieldString.substring(0,2048);
+								let embed2Description = fieldString.substring(2048);
+								msg.embed(embed1Description);
+								return msg.embed(embed2Description);
+							} else {
+								embed.setDescription(fieldString);
+								return msg.embed(embed);
+							}
 						}
-
-						return msg.embed(embed);
 					}).catch(console.error);
 				}).catch(console.error);
 			}).catch((err) => {
